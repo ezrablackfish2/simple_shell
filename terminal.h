@@ -13,8 +13,11 @@
 #include <errno.h>
 #include <time.h>
 #include <dirent.h>
+#include <stdbool.h>
+
 
 #define MAX_LINE_LENGTH 10000
+#define MAX_ALIASES 100
 
 typedef struct {
     int descriptor;
@@ -49,21 +52,27 @@ typedef struct {
 } builtin_table;
 
 
+typedef struct {
+    char alias[256];
+    char command[256];
+} alias_entry;
+
+
 ssize_t linereader(char** lineptr, size_t* n, int descriptor);
 ssize_t read_line(int descriptor, char* buffer, ssize_t max_length);
 ssize_t read_file_contents(int descriptor, char** buffer);
 off_t lseeker(int descriptor, off_t offset, int whence);
 int flusher(FILE* stream);
-int _strlen(char *str);
+int _strlen(const char *str);
 int _strcmp(char* str1, char* str2);
 char *get_char(char *str, char *character);
-char* _strcat(char* dest, char* src);
+char* _strcat(char* dest,const char* src);
 char* _strcpy(char* destination, char* source);
 char* _strdup(char* str);
 void _puts(char *str);
 int _putchar(char c);
 char *_strchrlast(char *s, char c);
-void print_prompt(int );
+void print_prompt();
 void fork_cmd(info_t *info);
 void free_info(info_t *info, int exit_status);
 void print_error(info_t *info, const char* message);
@@ -75,17 +84,22 @@ int oursetenv(info_t *info);
 int ourunsetenv(info_t *info);
 int ouralias(info_t *info);
 int divider(info_t *inform);
-char **strtow(char *str, char *d);
+char **toke(char *str, char *d);
 int is_delim(char c, char *delim);
 void find_path(info_t *info);
 char *pathfinder(info_t *info, char *pathstr, char *cmd);
-int is_cmd(info_t *info, char *path);
-char *dup_chars(char *pathstr, int start, int stop);
 void tabcompleter(char* line);
 char* get_word(char* line, int index);
-int interactive(property *file);
 int looper(int descriptor, int argc, char **argv, int );
-char *convert_number(long int num, int base, int flags);
+char *numtostr(long int num, int base, int flags);
 void _print(char *str);
+int _strncmp(const char* str1, const char* str2, size_t n);
+char* envget(const char* variable);
+void _putc(char c, FILE* stream);
+int ourcd(info_t *info);
+int is_command(info_t *data, char *path);
+char *duplicate_chars(char *pathstr, int start, int stop);
+int is_cmd(info_t *info, char *path);
+char *dup_chars(char *pathstr, int start, int stop);
 
 #endif

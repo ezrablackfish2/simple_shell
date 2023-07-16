@@ -1,17 +1,20 @@
 #include "terminal.h"
 
 int looper(int descriptor, int argc, char **argv, int linecount) {
-    char* line = NULL;
+    char* line;
     size_t line_length;
     property file;
-    file.descriptor = descriptor;
-    file.linecount_flag = 0;
     info_t info;
+    int built_in_ret;
+
+
+    line = NULL;
     info.linecount = 0;
-
-
+    file.linecount_flag = 0;
+    file.descriptor = descriptor;
     while (1) {
 	    info.linecount++;
+	    linecount++;
         if (file.descriptor != 0 && file.linecount_flag == 0) {
             while (linereader(&line, &line_length, file.descriptor) != -1) {
                 if (line_length > 0) {
@@ -22,33 +25,31 @@ int looper(int descriptor, int argc, char **argv, int linecount) {
             }
             file.linecount_flag = 1;
         } else {
-            print_prompt(linecount);
+            print_prompt();
             fflush(stdout);
             if (linereader(&line, &line_length, 0) == -1) {
                 break;
             }
             if (line_length > 0) {
 
-                // Prepare info_t structure for fork_cmd
-                info.path = line;  // Assuming line contains the path
-                info.argv = NULL;  // Assuming argv is not used in this example
-                info.pipefd[0] = -1;  // Assuming pipefd is not used in this example
-                info.pipefd[1] = -1;  // Assuming pipefd is not used in this example
-                info.status = -1;  // Assuming status is not used in this example
-                info.left_redirect_from_fd = -1;  // Assuming left_redirect_from_fd is not used in this example
+                info.path = line;  
+                info.argv = NULL;  
+                info.pipefd[0] = -1;  
+                info.pipefd[1] = -1;  
+                info.status = -1;  
+                info.left_redirect_from_fd = -1; 
 		info.argc = argc;
 		info.arg = _strdup(line);
                 info.argv = malloc(sizeof(argc));
-                info.argv[0] = NULL; // Assuming command name is fixed
+                info.argv[0] = NULL; 
                 info.argv[1] = NULL;
 		info.shell = argv[0];
 
 
 		divider(&info);
 
-                int built_in_ret = find_builtin(&info);
+                built_in_ret = find_builtin(&info);
                 if (built_in_ret == -2) {
-                    // Builtin signals exit
                     free(line);
                     free(info.argv[0]);
                     free(info.argv);

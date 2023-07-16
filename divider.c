@@ -2,7 +2,7 @@
 
 int divider(info_t *info)
 {
-	int i = 0;
+	int i;
 	(*info).argv = toke((*info).arg, " \t");
 		if (!(*info).argv)
 		{
@@ -23,6 +23,7 @@ char **toke(char *inputString, char *delimiters)
 {
     int index1, index2, index3, index4, numWords = 0;
     char **result;
+    int i;
 
     if (inputString == NULL || inputString[0] == 0)
         return NULL;
@@ -52,7 +53,7 @@ char **toke(char *inputString, char *delimiters)
             free(result);
             return NULL;
         }
-        for (int i = 0; i < index4; i++)
+        for (i = 0; i < index4; i++)
             result[index3][i] = inputString[index2++];
         result[index3][index4] = 0;
     }

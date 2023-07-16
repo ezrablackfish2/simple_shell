@@ -1,8 +1,12 @@
 #include "terminal.h"
 
 int main(int argc, char* argv[]) {
-    int descriptor = 0;
-    int linecount = 0;
+    int descriptor;
+    int linecount;
+    int result;
+
+    linecount = 0;
+    descriptor = 0;
 
     if (argc > 1) {
         descriptor = open(argv[1], O_RDONLY);
@@ -12,7 +16,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    int result = looper(descriptor, argc, argv, linecount);
+    result = looper(descriptor, argc, argv, linecount);
 
     return result;
 }
