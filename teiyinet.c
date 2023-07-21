@@ -26,11 +26,6 @@ void teiyineyatami(void)
 		exit(EXIT_FAILURE);
 	}
 
-	if (getlogin_r(username, sizeof(username)) != 0)
-	{
-	perror("getlogin_r");
-	exit(EXIT_FAILURE);
-	}
 	time(&rawtime);
 	info = localtime(&rawtime);
 	strftime(time_buffer, sizeof(time_buffer), "%Y/%m/%d", info);
