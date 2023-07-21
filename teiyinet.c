@@ -9,7 +9,6 @@ void teiyineyatami(void)
 {
 	char cwd[1024];
 	char hostname[1024];
-	char username[1024];
 	time_t rawtime;
 	struct tm *info;
 	char time_buffer[80];
