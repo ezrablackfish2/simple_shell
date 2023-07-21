@@ -149,7 +149,8 @@ ssize_t kegelashanbabi(int descriptor, sline *reader);
 int gimashanbabi(sline *reader, ssize_t *line_length, char **line);
 void anesash(info_t *info, char *line, int argc, char **argv);
 void siket(char *line, size_t line_length, info_t *info,
-		int argc, char **argv);
+		int argc, char **argv, property *file);
+int megenagna(property *file);
 
 
 #endif

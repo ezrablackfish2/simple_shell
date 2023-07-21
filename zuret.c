@@ -32,7 +32,7 @@ int zuret(int descriptor, int argc, char **argv)
 		}
 		else
 		{
-			siket(line, line_length, &info, argc, argv);
+			siket(line, line_length, &info, argc, argv, &file);
 		}
 	}
 	if (descriptor != 0)
@@ -47,15 +47,19 @@ int zuret(int descriptor, int argc, char **argv)
  * @info: structural inheritance
  * @argc: is the argument counter
  * @argv: is the value of argument values you wrote
+ * @file: is the teller of interactiviness aman and ezra
  * Return: nothing just nothing
  */
 
 void siket(char *line, size_t line_length, info_t *info,
-		int argc, char **argv)
+		int argc, char **argv, property *file)
 {
 	int built_in_ret;
 
-			teiyineyatami();
+			if (megenagna(file))
+			{
+				teiyineyatami();
+			}
 			fflush(stdout);
 			if (mesmeranbabi(&line, &line_length, 0) == -1)
 				return;
@@ -79,6 +83,10 @@ void siket(char *line, size_t line_length, info_t *info,
 			free(line);
 			free(info->argv[0]);
 			free(info->argv);
+			}
+			if (!megenagna(file))
+			{
+				exit(info->status);
 			}
 }
 
@@ -106,4 +114,15 @@ void anesash(info_t *info, char *line, int argc, char **argv)
 		info->argv[1] = NULL;
 		info->shell = argv[0];
 		return;
+}
+
+/**
+ * megenagna - returns true if shell is interactive mode
+ * @file: struct address
+ *
+ * Return: 1 if interactive mode, 0 otherwise
+ */
+int megenagna(property *file)
+{
+	return (isatty(STDIN_FILENO) && file->descriptor <= 2);
 }
