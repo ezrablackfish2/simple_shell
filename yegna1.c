@@ -8,6 +8,21 @@
 
 int mewicha(info_t *info)
 {
+	int i;
+
+         if (info->arg!= NULL)
+                {
+                        free(info->arg);
+                        info->arg = NULL;
+                }
+                if (info->argv != NULL)
+                {
+                        for (i = 0; info->argv[i]; i++)
+                                free(info->argv[i]);
+                        free(info->argv);
+                        info->argv = NULL;
+                }
+
 	antshi(info, 0);
 	return (0);
 }
@@ -133,3 +148,4 @@ int teteki(info_t *info)
 	num_aliases++;
 	return (0);
 }
+

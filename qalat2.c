@@ -8,26 +8,19 @@
 
 char *qalatabzi(char *str)
 {
-	int len;
-	int i;
-	char *new_str;
+		int length = 0;
+	char *ret;
 
-	len = 0;
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-
-	new_str = (char *)malloc(sizeof(char) * len);
-
-	for (i = 0; i <= len; i++)
-	{
-		new_str[i] = str[i];
-	}
-
-	new_str[len + 1] = '\0';
-
-	return (new_str);
+	if (str == NULL)
+		return (NULL);
+	while (*str++)
+		length++;
+	ret = malloc(sizeof(char) * (length + 1));
+	if (!ret)
+		return (NULL);
+	for (length++; length--;)
+		ret[length] = *--str;
+	return (ret);
 }
 
 /**
