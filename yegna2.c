@@ -40,7 +40,11 @@ int botaqeyary(info_t *info)
 	else
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
-		perror("cd failed");
+	{
+		chigiratami(info, "can't cd to ");
+		write(2, info->argv[1], qalatrizmet(info->argv[1]));
+		atim("\n");
+	}
 	else
 		setenv("OLDPWD", akababiagni("PWD"), 1);
 	return (0);
