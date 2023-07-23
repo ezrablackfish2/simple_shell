@@ -29,7 +29,7 @@ void teiyineyatami(void)
 	info = localtime(&rawtime);
 	strftime(time_buffer, sizeof(time_buffer), "%Y/%m/%d", info);
 	atim("{{<<Ezra>>}} Shell and aman");
-	if (strcmp(cwd, "/") == 0)
+	if (qalatwididir(cwd, "/") == 0)
 	{
 		atim("$ ");
 	}
