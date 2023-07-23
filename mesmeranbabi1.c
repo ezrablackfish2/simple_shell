@@ -10,7 +10,7 @@
 void nibabanesash(sline *reader, int descriptor)
 {
 	reader->descriptor = 0;
-	memset(reader->readingplace, 0, sizeof(reader->readingplace));
+	tiwistaaragi(reader->readingplace, 0, sizeof(reader->readingplace));
 	reader->index = 0;
 	reader->length = 0;
 

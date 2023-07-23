@@ -43,9 +43,28 @@ int botaqeyary(info_t *info)
 	{
 		chigiratami(info, "can't cd to ");
 		write(2, info->argv[1], qalatrizmet(info->argv[1]));
-		atim("\n");
+		write(2, "\n", 2);
 	}
 	else
 		setenv("OLDPWD", akababiagni("PWD"), 1);
 	return (0);
+}
+
+/**
+ * tiwistaaragi - fills memory with constant byte
+ * @s: the pointer to be filled
+ * @b: the value to be filled
+ * @n: the total size of memory in bytes
+ * Return: memory destination
+ */
+
+char *tiwistaaragi(char *s, char b, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+	{
+		*(s + i) = b;
+	}
+	return (s);
 }

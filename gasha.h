@@ -155,6 +155,7 @@ int megenagna(property *file);
 void fayle(property file, char *line, size_t line_length);
 void anesash(info_t *info, int argc, char **argv, char *line);
 void netsaawchi(info_t *info, char *line);
+char *tiwistaaragi(char *s, char b, unsigned int n);
 
 
 #endif
