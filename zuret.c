@@ -29,9 +29,9 @@ int zuret(int descriptor, int argc, char **argv, char *line,
 			fflush(stdout);
 			if (mesmeranbabi(&line, &line_length, 0) == -1)
 				break;
+			anesash(&info, argc, argv, line);
 			if (line_length > 0)
 			{
-				anesash(&info, argc, argv, line);
 				built_in_ret = siraagigni(&info);
 				if (built_in_ret == -2)
 					break;
