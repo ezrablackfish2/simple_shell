@@ -28,7 +28,11 @@ int zuret(int descriptor, int argc, char **argv, char *line,
 				teiyineyatami();
 			fflush(stdout);
 			if (mesmeranbabi(&line, &line_length, 0) == -1)
-				break;
+			{
+				if (descriptor != 0)
+					close(descriptor);
+				return (0);
+			}
 			anesash(&info, argc, argv, line);
 			if (line_length > 0)
 			{

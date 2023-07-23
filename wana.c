@@ -35,7 +35,21 @@ int main(int argc, char *argv[])
 	}
 
 	file.descriptor = descriptor;
+	signal(SIGINT, milikit);
 	result = zuret(descriptor, argc, argv, line, line_length,
 			file, info, built_in_ret);
 	return (result);
+}
+
+/**
+ * milikit - blocks ctrl-C
+ * @qutirmilikit: the signal number
+ *
+ * Return: void
+ */
+void milikit(int qutirmilikit)
+{
+	(void)qutirmilikit;
+	atim("\n");
+	teiyineyatami();
 }
