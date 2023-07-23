@@ -130,9 +130,11 @@ char **qorach(char *str, char *d);
 int aqimlik(char c, char *delim);
 void agignaqtacha(info_t *info);
 char *aqtachagni(info_t *info, char *pathstr, char *cmd);
-void tabcompleter(char *line);
+void tabcoherash(char *line);
 char *get_word(char *line, int index);
-int zuret(int descriptor, int argc, char **argv);
+int zuret(int descriptor, int argc, char **argv, char *line,
+		size_t line_length, property file, info_t info,
+		int built_in_ret);
 char *qutirwedeqal(long int num, int base, int flags);
 void atim(char *str);
 int qalatwididirrizmet(const char *str1, const char *str2, size_t n);
@@ -147,10 +149,12 @@ extern char **environ;
 void nibabanesash(sline *reader, int descriptor);
 ssize_t kegelashanbabi(int descriptor, sline *reader);
 int gimashanbabi(sline *reader, ssize_t *line_length, char **line);
-void anesash(info_t *info, char *line, int argc, char **argv);
 void siket(char *line, size_t line_length, info_t *info,
 		int argc, char **argv, property *file);
 int megenagna(property *file);
+void fayle(property file, char *line, size_t line_length);
+void anesash(info_t *info, int argc, char **argv, char *line);
+void netsaawchi(info_t *info, char *line);
 
 
 #endif
